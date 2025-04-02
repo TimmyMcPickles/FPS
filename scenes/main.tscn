@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5mkei7jy1ujc"]
+[gd_scene load_steps=6 format=3 uid="uid://c5mkei7jy1ujc"]
 
 [ext_resource type="PackedScene" uid="uid://d7umbutl2yhq" path="res://scenes/fpsController.tscn" id="1_o5qli"]
+[ext_resource type="ArrayMesh" uid="uid://dhffpbjqcumfb" path="res://models/weapons/Low_poly_glock.obj" id="2_0wfyh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -50,3 +51,7 @@ size = Vector3(1, 5, 29.9)
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.4, 3.3)
+
+[node name="LowPolyGlock" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.251536, 2.58225, -3.46287)
+mesh = ExtResource("2_0wfyh")
