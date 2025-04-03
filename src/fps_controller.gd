@@ -4,6 +4,13 @@ extends CharacterBody3D
 #Need to analyse it further so I get what's happening
 #Basically source-like movement
 
+#bullets
+var bullet = load("res://scenes/bullet_glock.tscn")
+var instance
+
+@onready var gun_anim = $Head/Camera3D/glock/AnimationPlayer
+@onready var bullet_spawn = $Head/Camera3D/glock/RayCast3D
+
 @export var look_sensitivity : float = 0.006
 @export var jump_velocity := 6.0
 @export var auto_bhop := true
@@ -48,6 +55,15 @@ func _process(delta):
 func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "up", "down").normalized()
 	wish_dir = self.global_transform.basis * Vector3(input_dir.x, 0., input_dir.y)
+	
+	#shooting
+	if Input.is_action_pressed("shoot"):
+		if !gun_anim.is_playing():
+			gun_anim.play("shoot")
+			instance = bullet.instantiate()
+			instance.position = bullet_spawn.global_position
+			instance.transform.basis = bullet_spawn.global_transform.basis
+			get_parent().add_child(instance)
 	
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump") or (auto_bhop and Input.is_action_pressed("jump")):

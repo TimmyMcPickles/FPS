@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d7umbutl2yhq"]
+[gd_scene load_steps=5 format=3 uid="uid://d7umbutl2yhq"]
 
 [ext_resource type="Script" uid="uid://caja55j6biwkq" path="res://src/fps_controller.gd" id="1_reen0"]
+[ext_resource type="PackedScene" uid="uid://nylwjwdqq81k" path="res://scenes/glock.tscn" id="2_vqd5y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akli2"]
 
@@ -27,3 +28,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79, 0)
 cull_mask = 1048573
+
+[node name="glock" parent="Head/Camera3D" instance=ExtResource("2_vqd5y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.608614, -0.355042, -0.850366)
