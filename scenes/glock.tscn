@@ -1,42 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://nylwjwdqq81k"]
 
-[ext_resource type="ArrayMesh" uid="uid://dhffpbjqcumfb" path="res://models/weapons/Low_poly_glock.obj" id="1_iy1he"]
-
-[sub_resource type="Animation" id="Animation_iy1he"]
-resource_name = "shoot"
-length = 0.1
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.01, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.108, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.01, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.401426), Vector3(0, 1.5708, 0)]
-}
+[ext_resource type="PackedScene" uid="uid://buxdf0x8bx8j1" path="res://models/weapons/glock_test/Low_poly_glock.glb" id="1_iy1he"]
 
 [sub_resource type="Animation" id="Animation_bwknr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/path = NodePath("Cube:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -48,7 +19,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/path = NodePath("Cube:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -58,24 +29,52 @@ tracks/1/keys = {
 "values": [Vector3(0, 1.5708, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_iy1he"]
+resource_name = "shoot"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.03, 0.05), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0.0872665, 1.5708, 0), Vector3(0, 1.5708, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3x3b"]
 _data = {
 &"RESET": SubResource("Animation_bwknr"),
 &"shoot": SubResource("Animation_iy1he")
 }
 
-[node name="glock" type="Node3D"]
+[node name="Low_poly_glock" instance=ExtResource("1_iy1he")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-5.16758e-09, 0, 0.118221, 0, 0.118221, 0, -0.118221, 0, -5.16758e-09, 0, 0, 0)
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 cast_shadow = 0
-mesh = ExtResource("1_iy1he")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
 &"": SubResource("AnimationLibrary_n3x3b")
 }
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="RayCast3D" type="RayCast3D" parent="." index="2"]
 transform = Transform3D(0.999999, -0.000391085, 0.00169026, 0.000385845, 0.999995, 0.0031095, -0.00169146, -0.00310885, 0.999994, 0, 0.134, -0.29814)
 target_position = Vector3(0, 0, -1)
