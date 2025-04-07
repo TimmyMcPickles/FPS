@@ -1,6 +1,33 @@
 [gd_scene load_steps=5 format=3 uid="uid://nylwjwdqq81k"]
 
-[ext_resource type="ArrayMesh" uid="uid://dhffpbjqcumfb" path="res://models/weapons/Low_poly_glock.obj" id="1_iy1he"]
+[ext_resource type="Script" uid="uid://b1cfo8behx42u" path="res://src/glock.gd" id="1_iy1he"]
+
+[sub_resource type="Animation" id="Animation_bwknr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_iy1he"]
 resource_name = "shoot"
@@ -31,33 +58,6 @@ tracks/1/keys = {
 "values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.401426), Vector3(0, 1.5708, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_bwknr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3x3b"]
 _data = {
 &"RESET": SubResource("Animation_bwknr"),
@@ -65,11 +65,11 @@ _data = {
 }
 
 [node name="glock" type="Node3D"]
+script = ExtResource("1_iy1he")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-5.16758e-09, 0, 0.118221, 0, 0.118221, 0, -0.118221, 0, -5.16758e-09, 0, 0, 0)
+transform = Transform3D(-4.27959e-07, 0, 0.118221, 0, 0.118221, 0, -0.118221, 0, -4.27959e-07, 0, 0, 0)
 cast_shadow = 0
-mesh = ExtResource("1_iy1he")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
