@@ -128,3 +128,6 @@ func _handle_ground_physics(delta) -> void:
 	if self.velocity.length() > 0:
 		new_speed /= self.velocity.length()
 	self.velocity *= new_speed
+
+#func take_knockback(force, direction) -> void:
+	#self.velocity +=  direction * Vector3(0, 0, -force)

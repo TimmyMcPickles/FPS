@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://v1p8o1wnxqkk"]
+[gd_scene load_steps=7 format=3 uid="uid://v1p8o1wnxqkk"]
 
 [ext_resource type="PackedScene" uid="uid://vavo7c6muqei" path="res://models/weapons/SawedOff/SawedOff.glb" id="1_hq031"]
 [ext_resource type="Script" uid="uid://csicmldkglkrp" path="res://src/sawed_off.gd" id="1_k2htc"]
 
 [sub_resource type="Animation" id="Animation_k2htc"]
 resource_name = "Shoot"
-length = 0.3
+length = 0.4
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -59,9 +59,39 @@ tracks/1/keys = {
 "values": [Vector3(0, 1.5708, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_xma8n"]
+resource_name = "Reload"
+length = 0.6
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SawedOff:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(8.93014e-06, 1.56996e-05, -0.14171), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SawedOff:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(6.9054e-05, 1.57084, -0.76325), Vector3(0, 1.5708, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xma8n"]
 _data = {
 &"RESET": SubResource("Animation_mai8a"),
+&"Reload": SubResource("Animation_xma8n"),
 &"Shoot": SubResource("Animation_k2htc")
 }
 
@@ -72,53 +102,18 @@ script = ExtResource("1_k2htc")
 [node name="SawedOff" parent="." instance=ExtResource("1_hq031")]
 transform = Transform3D(-2.28864e-09, 0, 0.0523579, 0, 0.0523579, 0, -0.0523579, 0, -2.28864e-09, 0, 0, 0)
 
+[node name="Cube" parent="SawedOff" index="0"]
+cast_shadow = 0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_xma8n")
 }
 autoplay = "RESET"
 
-[node name="pelletspawn1" type="RayCast3D" parent="."]
-transform = Transform3D(0.996195, 0.00759612, 0.0868241, 2.72848e-12, 0.996195, -0.0871558, -0.0871557, 0.0868241, 0.992404, -8.02055e-05, 0.019714, -0.574023)
+[node name="pelletspawn" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.02055e-05, 0.019714, -0.574023)
 target_position = Vector3(0, 0, -1)
 collision_mask = 0
 
-[node name="pelletspawn2" type="RayCast3D" parent="."]
-transform = Transform3D(0.996195, -0.00759612, -0.0868241, -1.81899e-12, 0.996195, -0.0871558, 0.0871558, 0.0868241, 0.992404, -8.02054e-05, 0.019714, -0.577023)
-target_position = Vector3(0, 0, -1)
-collision_mask = 0
-
-[node name="pelletspawn3" type="RayCast3D" parent="."]
-transform = Transform3D(0.996195, -0.00759612, 0.086824, 2.72848e-12, 0.996195, 0.0871557, -0.0871557, -0.0868241, 0.992404, -0.002103, 0.0407142, -0.57708)
-target_position = Vector3(0, 0, -1)
-collision_mask = 0
-
-[node name="pelletspawn4" type="RayCast3D" parent="."]
-transform = Transform3D(0.996195, 0.00759612, -0.0868241, -1.81899e-12, 0.996195, 0.0871557, 0.0871558, -0.0868241, 0.992404, -8.02054e-05, 0.019714, -0.577023)
-target_position = Vector3(0, 0, -1)
-collision_mask = 0
-
-[node name="pelletspawn5" type="RayCast3D" parent="."]
-transform = Transform3D(1, 3.91083e-11, -7.27596e-12, 2.66009e-12, 0.987688, -0.156434, 0, 0.156434, 0.987688, -8.02055e-05, 0.019714, -0.576023)
-target_position = Vector3(0, 0, -1)
-collision_mask = 0
-
-[node name="pelletspawn6" type="RayCast3D" parent="."]
-transform = Transform3D(1, 4.54747e-12, -7.27596e-12, 2.66009e-12, 0.987688, 0.156435, 0, -0.156435, 0.987688, -8.02055e-05, 0.019714, -0.576023)
-target_position = Vector3(0, 0, -1)
-collision_mask = 0
-
-[node name="pelletspawn7" type="RayCast3D" parent="."]
-transform = Transform3D(0.987688, 5.50826e-11, 0.156434, 5.45697e-12, 1, 4.36557e-11, -0.156434, 0, 0.987689, -8.02055e-05, 0.019714, -0.576023)
-target_position = Vector3(0, 0, -1)
-collision_mask = 0
-
-[node name="pelletspawn8" type="RayCast3D" parent="."]
-transform = Transform3D(0.987688, 2.59788e-11, -0.156434, 1.81899e-12, 1, 2.91038e-11, 0.156434, 0, 0.987688, -8.02055e-05, 0.019714, -0.576023)
-target_position = Vector3(0, 0, -1)
-collision_mask = 0
-
-[node name="pelletspawn9" type="RayCast3D" parent="."]
-transform = Transform3D(1, 2.59788e-11, 0, 2.66009e-12, 1, 0, 0, 0, 1, -8.02055e-05, 0.019714, -0.574023)
-target_position = Vector3(0, 0, -1)
-collision_mask = 0
+[editable path="SawedOff"]

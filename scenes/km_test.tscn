@@ -21,8 +21,9 @@ glow_enabled = true
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_5ivmh")]
 
 [node name="SawedOffShotty" parent="CharacterBody3D/Head/Camera3D" index="0" instance=ExtResource("2_a1557")]
-transform = Transform3D(1, -9.18107e-05, 6.30067e-05, 9.18107e-05, 1, 0.000110792, -6.30067e-05, -0.000110792, 1, 0.686245, -0.453072, -0.868688)
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0.279884, -0.493012, -1.02942)
 active = true
+heldByPlayer = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rqn0j")
