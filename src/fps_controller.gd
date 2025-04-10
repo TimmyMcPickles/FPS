@@ -5,11 +5,11 @@ extends CharacterBody3D
 #Basically source-like movement
 
 #bullets
-var bullet = load("res://scenes/bullet_glock.tscn")
-var instance
+#var bullet = load("res://scenes/bullet_glock.tscn")
+#var instance
 
-@onready var gun_anim = $Head/Camera3D/glock/AnimationPlayer
-@onready var bullet_spawn = $Head/Camera3D/glock/RayCast3D
+#@onready var gun_anim = $Head/Camera3D/glock/AnimationPlayer
+#@onready var bullet_spawn = $Head/Camera3D/glock/RayCast3D
 
 @export var look_sensitivity : float = 0.006
 @export var jump_velocity := 6.0
@@ -57,13 +57,13 @@ func _physics_process(delta):
 	wish_dir = self.global_transform.basis * Vector3(input_dir.x, 0., input_dir.y)
 	
 	#shooting
-	if Input.is_action_pressed("shoot"):
-		if !gun_anim.is_playing():
-			gun_anim.play("shoot")
-			instance = bullet.instantiate()
-			instance.position = bullet_spawn.global_position
-			instance.transform.basis = bullet_spawn.global_transform.basis
-			get_parent().add_child(instance)
+	#if Input.is_action_pressed("shoot"):
+	#	if !gun_anim.is_playing():
+	#		gun_anim.play("shoot")
+	#		instance = bullet.instantiate()
+	#		instance.position = bullet_spawn.global_position
+	#		instance.transform.basis = bullet_spawn.global_transform.basis
+	#		get_parent().add_child(instance)
 	
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump") or (auto_bhop and Input.is_action_pressed("jump")):
@@ -129,3 +129,6 @@ func _handle_ground_physics(delta) -> void:
 	if self.velocity.length() > 0:
 		new_speed /= self.velocity.length()
 	self.velocity *= new_speed
+
+#func take_knockback(force, direction) -> void:
+	#self.velocity +=  direction * Vector3(0, 0, -force)

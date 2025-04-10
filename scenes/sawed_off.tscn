@@ -1,0 +1,119 @@
+[gd_scene load_steps=7 format=3 uid="uid://v1p8o1wnxqkk"]
+
+[ext_resource type="PackedScene" uid="uid://vavo7c6muqei" path="res://models/weapons/SawedOff/SawedOff.glb" id="1_hq031"]
+[ext_resource type="Script" uid="uid://csicmldkglkrp" path="res://src/sawed_off.gd" id="1_k2htc"]
+
+[sub_resource type="Animation" id="Animation_k2htc"]
+resource_name = "Shoot"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SawedOff:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.29),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-4.94037e-05, -8.6854e-05, 0.783976), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SawedOff:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.07, 0.14, 0.29),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(-1.92002e-05, 1.57072, 0.682738), Vector3(-1.37304e-05, 1.57071, 0.773349), Vector3(-5.90673e-06, 1.57071, 0.873172), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mai8a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SawedOff:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SawedOff:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xma8n"]
+resource_name = "Reload"
+length = 0.6
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SawedOff:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(8.93014e-06, 1.56996e-05, -0.14171), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SawedOff:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(6.9054e-05, 1.57084, -0.76325), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xma8n"]
+_data = {
+&"RESET": SubResource("Animation_mai8a"),
+&"Reload": SubResource("Animation_xma8n"),
+&"Shoot": SubResource("Animation_k2htc")
+}
+
+[node name="SawedOffShotty" type="Node3D"]
+transform = Transform3D(1, -9.18107e-05, 6.30067e-05, 9.18107e-05, 1, 0.000110792, -6.30067e-05, -0.000110792, 1, 0, 0, 0)
+script = ExtResource("1_k2htc")
+
+[node name="SawedOff" parent="." instance=ExtResource("1_hq031")]
+transform = Transform3D(-2.28864e-09, 0, 0.0523579, 0, 0.0523579, 0, -0.0523579, 0, -2.28864e-09, 0, 0, 0)
+
+[node name="Cube" parent="SawedOff" index="0"]
+cast_shadow = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xma8n")
+}
+autoplay = "RESET"
+
+[node name="pelletspawn" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.02055e-05, 0.019714, -0.574023)
+target_position = Vector3(0, 0, -1)
+collision_mask = 0
+
+[editable path="SawedOff"]
