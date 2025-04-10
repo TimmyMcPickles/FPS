@@ -67,7 +67,7 @@ _data = {
 [node name="Low_poly_glock" instance=ExtResource("1_iy1he")]
 
 [node name="Cube" parent="." index="0"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 0)
 cast_shadow = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
