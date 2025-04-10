@@ -30,7 +30,7 @@ extends CharacterBody3D
 var wish_dir := Vector3.ZERO
 
 func get_move_speed() -> float:
-	return sprint_speed if Input.is_action_just_pressed("sprint") else walk_speed
+	return sprint_speed if Input.is_action_pressed("sprint") else walk_speed
 
 func _ready():
 	for child in %WorldModel.find_children("*", "VisualInstance3D"):
@@ -74,18 +74,19 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func clip_velocity(normal: Vector3, overbounce: float, delta: float) -> void:
+# Turning this off for now because our current test box has shitty collisions
+#func clip_velocity(normal: Vector3, overbounce: float, delta: float) -> void:
 	# This code lets surfing happen (for funsies)
-	var backoff := self.velocity.dot(normal) * overbounce
+#	var backoff := self.velocity.dot(normal) * overbounce
 	
-	if backoff >= 0: return
+	#if backoff >= 0: return
 	
-	var change := normal * backoff
-	self.velocity -= change
+	#var change := normal * backoff
+	#self.velocity -= change
 	
-	var adjust := self.velocity.dot(normal)
-	if adjust < 0.0:
-		self.velocity -= normal * adjust
+	#var adjust := self.velocity.dot(normal)
+	#if adjust < 0.0:
+		#self.velocity -= normal * adjust
 
 func is_surface_too_steep(normal: Vector3) -> bool:
 	var max_slop_ang_dot = Vector3(0,1,0).rotated(Vector3(1.0,0,0), self.floor_max_angle).dot(Vector3(0,1,0))
@@ -110,7 +111,7 @@ func _handle_air_physics(delta) -> void:
 	if is_on_wall():
 		if is_surface_too_steep(get_wall_normal()):
 			self.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
-		clip_velocity(get_wall_normal(), 1, delta) # Allows surfing
+		#clip_velocity(get_wall_normal(), 1, delta) # Allows surfing
 
 func _handle_ground_physics(delta) -> void:
 	# Similar to air movement. Acceleration and friction on ground
