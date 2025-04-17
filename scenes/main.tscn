@@ -50,6 +50,7 @@ size = Vector3(1, 5, 29.9)
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.4, 3.3)
+slide_on_ceiling = false
 jump_velocity = 5.5
 
 [editable path="CharacterBody3D"]
