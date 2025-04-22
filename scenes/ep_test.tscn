@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2rgn6ww7cl55"]
+
+[ext_resource type="PackedScene" uid="uid://d7umbutl2yhq" path="res://scenes/fpsController.tscn" id="1_if2mf"]
+[ext_resource type="PackedScene" uid="uid://c7x033y4kqr8q" path="res://scenes/enemy.tscn" id="2_wvtpi"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_sgp6g")
+
+[sub_resource type="Environment" id="Environment_0wfyh"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0wfyh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.686128, -0.662733, 0.300021, -0.24973, 0.601922, 0.758502, -0.683274, 0.445505, -0.5785, 0.4, 10.4, -0.2)
+shadow_enabled = true
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4995, 0)
+use_collision = true
+size = Vector3(30, 0.001, 30)
+
+[node name="Map Geometry" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 2, 0)
+size = Vector3(1, 5, 29.9)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 2, 0)
+size = Vector3(1, 5, 29.9)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map Geometry"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0999994, 2, -14.5)
+size = Vector3(1, 5, 29.9)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Map Geometry"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0999994, 2, 14.4)
+size = Vector3(1, 5, 29.9)
+
+[node name="Enemy" parent="." instance=ExtResource("2_wvtpi")]
+transform = Transform3D(-0.821796, 0, 0.569782, 0, 1, 0, -0.569782, 0, -0.821796, -5.09795, 0.0504156, 5.48195)
+
+[node name="Player" parent="." instance=ExtResource("1_if2mf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.4, 3.3)
+slide_on_ceiling = false
+floor_stop_on_slope = false
+jump_velocity = 5.5
+
+[editable path="Player"]

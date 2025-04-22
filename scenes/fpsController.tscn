@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" uid="uid://caja55j6biwkq" path="res://src/fps_controller.gd" id="1_reen0"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akli2"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_reen0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vqd5y"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" groups=["player"]]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_reen0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_akli2")
+shape = SubResource("CapsuleShape3D_reen0")
 
 [node name="WorldModel" type="Node3D" parent="."]
 unique_name_in_owner = true

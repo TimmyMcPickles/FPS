@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7x033y4kqr8q"]
+
+[ext_resource type="Shader" uid="uid://cb4oajhgi3ms0" path="res://shaders/psx.gdshader" id="1_md0e3"]
+[ext_resource type="ArrayMesh" uid="uid://bakt4squh8ae4" path="res://models/guy/guyV1_Cube.res" id="2_4ra3w"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tegq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5uy6h"]
+render_priority = 0
+shader = ExtResource("1_md0e3")
+shader_parameter/paletteswap = false
+shader_parameter/snapRes = 50.0
+
+[node name="Enemy" type="Node3D"]
+
+[node name="Enemy" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43087, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("CapsuleShape3D_8tegq")
+
+[node name="WorldModel" type="Node3D" parent="Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.613022, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy/WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+material_override = SubResource("ShaderMaterial_5uy6h")
+mesh = ExtResource("2_4ra3w")
