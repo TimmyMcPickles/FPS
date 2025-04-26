@@ -1,6 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c01pd36h7msva"]
-
-[ext_resource type="Texture2D" uid="uid://1oy7445hlyi2" path="res://models/weapons/glock_test/Low_poly_glock_glock_texture.png" id="1_u4hoo"]
-
-[resource]
-albedo_texture = ExtResource("1_u4hoo")

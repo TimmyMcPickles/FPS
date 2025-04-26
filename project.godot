@@ -15,6 +15,10 @@ run/main_scene="uid://c5mkei7jy1ujc"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
+
 [global_group]
 
 player=""
