@@ -19,6 +19,9 @@ extends CharacterBody3D
 # Wall sliding fix
 @export var wall_slide_threshold := 0.2
 
+# Camera tilt modifier
+@export var tilt_mod :=0.03
+
 var wish_dir := Vector3.ZERO
 var was_on_floor := false
 
@@ -63,6 +66,13 @@ func _physics_process(delta):
 	if is_on_wall() and !is_on_floor():
 		var wall_normal = get_wall_normal()
 		handle_wall_slide(wall_normal, delta)
+		
+	if input_dir.x > 0:
+		$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(-5), tilt_mod)
+	elif input_dir.x < 0:
+		$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(5), tilt_mod)
+	else:
+		$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(0), tilt_mod)
 
 	move_and_slide()
 
