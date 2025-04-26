@@ -44,6 +44,10 @@ func _unhandled_input(event):
 			rotate_y(-event.relative.x * look_sensitivity)
 			%Camera3D.rotate_x(-event.relative.y * look_sensitivity)
 			%Camera3D.rotation.x = clamp(%Camera3D.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+			#Camera3d was getting rotations on y and z when it shouldn't have as the system tried to match camera x rotation and players body rotation
+				#Locking these values to 0 seems to have fixed this
+			%Camera3D.rotation.y = 0 
+			%Camera3D.rotation.z = 0
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "up", "down").normalized()
