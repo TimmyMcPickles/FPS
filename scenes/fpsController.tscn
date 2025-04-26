@@ -1,13 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://d7umbutl2yhq"]
+[gd_scene load_steps=6 format=3 uid="uid://d7umbutl2yhq"]
 
 [ext_resource type="Script" uid="uid://caja55j6biwkq" path="res://src/fps_controller.gd" id="1_reen0"]
+[ext_resource type="Shader" uid="uid://cb4oajhgi3ms0" path="res://shaders/psx.gdshader" id="2_w7u6x"]
+[ext_resource type="ArrayMesh" uid="uid://bakt4squh8ae4" path="res://models/guy/guyV1_Cube.res" id="3_n4b2a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_reen0"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_vqd5y"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w2no2"]
+render_priority = 0
+shader = ExtResource("2_w7u6x")
+shader_parameter/paletteswap = false
+shader_parameter/snapRes = 50.0
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_reen0")
+jump_velocity = 7.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -17,8 +24,9 @@ shape = SubResource("CapsuleShape3D_reen0")
 unique_name_in_owner = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WorldModel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_vqd5y")
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.03, 0)
+material_override = SubResource("ShaderMaterial_w2no2")
+mesh = ExtResource("3_n4b2a")
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true

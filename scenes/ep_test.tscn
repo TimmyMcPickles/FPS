@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2rgn6ww7cl55"]
+[gd_scene load_steps=13 format=4 uid="uid://b2rgn6ww7cl55"]
 
 [ext_resource type="PackedScene" uid="uid://d7umbutl2yhq" path="res://scenes/fpsController.tscn" id="1_if2mf"]
 [ext_resource type="PackedScene" uid="uid://c7x033y4kqr8q" path="res://scenes/enemy.tscn" id="2_wvtpi"]
+[ext_resource type="Script" uid="uid://caaqcqevq0jga" path="res://addons/func_godot/src/map/func_godot_map.gd" id="3_pxri7"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="4_7xyeq"]
+[ext_resource type="Texture2D" uid="uid://d3e3doqtlcdde" path="res://textures/special/sal.jpg" id="5_pxri7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -16,6 +19,33 @@ sky = SubResource("Sky_0wfyh")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xyeq"]
+albedo_texture = ExtResource("5_pxri7")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yhki7"]
+_surfaces = [{
+"aabb": AABB(-32, -0.5, -32, 64, 0.5, 64),
+"attribute_data": PackedByteArray("ttOsQOiQmr2206xAFIy3P7bTrMAUjLc/ttOswOiQmr2206zA6JCavbbTrEDokJq9ttOsQBSMtz+206zAFIy3P7bTrEAiNcHAttOsQCI1wUC206zAIjXBQLbTrMAiNcHAttOswCI1wcC206xAIjXBwLbTrEAiNcFAttOswCI1wUC206xA6JCavbbTrEAUjLc/ttOswBSMtz+206zA6JCavbbTrMDokJo9ttOsQOiQmj2206xAFIy3v7bTrMAUjLe/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": SubResource("StandardMaterial3D_7xyeq"),
+"name": "special/sal",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAwgAAAAAAAADCAAAAwgAAAL8AAADCAAAAQgAAAL8AAADCAAAAQgAAAAAAAADCAAAAwgAAAAAAAADCAAAAwgAAAAAAAABCAAAAwgAAAL8AAABCAAAAwgAAAL8AAADCAAAAQgAAAL8AAADCAAAAwgAAAL8AAADCAAAAwgAAAL8AAABCAAAAQgAAAL8AAABCAAAAQgAAAAAAAADCAAAAQgAAAAAAAABCAAAAwgAAAAAAAABCAAAAwgAAAAAAAADCAAAAQgAAAAAAAADCAAAAQgAAAL8AAADCAAAAQgAAAL8AAABCAAAAQgAAAAAAAABCAAAAwgAAAAAAAABCAAAAQgAAAAAAAABCAAAAQgAAAL8AAABCAAAAwgAAAL8AAABC/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////8//3//f////z//f/9/////P/9//3////8/")
+}]
+
+[sub_resource type="ArrayOccluder3D" id="ArrayOccluder3D_00j7a"]
+vertices = PackedVector3Array(-32, 0, -32, -32, -0.5, -32, 32, -0.5, -32, 32, 0, -32, -32, 0, -32, -32, 0, 32, -32, -0.5, 32, -32, -0.5, -32, 32, -0.5, -32, -32, -0.5, -32, -32, -0.5, 32, 32, -0.5, 32, 32, 0, -32, 32, 0, 32, -32, 0, 32, -32, 0, -32, 32, 0, -32, 32, -0.5, -32, 32, -0.5, 32, 32, 0, 32, -32, 0, 32, 32, 0, 32, 32, -0.5, 32, -32, -0.5, 32)
+indices = PackedInt32Array(0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l0p44"]
+points = PackedVector3Array(-32, 0, -32, -32, -0.5, -32, 32, -0.5, -32, 32, 0, -32, -32, 0, 32, -32, -0.5, 32, 32, -0.5, 32, 32, 0, 32)
+
 [node name="main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -25,37 +55,33 @@ environment = SubResource("Environment_0wfyh")
 transform = Transform3D(-0.686128, -0.662733, 0.300021, -0.24973, 0.601922, 0.758502, -0.683274, 0.445505, -0.5785, 0.4, 10.4, -0.2)
 shadow_enabled = true
 
-[node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4995, 0)
-use_collision = true
-size = Vector3(30, 0.001, 30)
-
-[node name="Map Geometry" type="CSGCombiner3D" parent="."]
-use_collision = true
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Map Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 2, 0)
-size = Vector3(1, 5, 29.9)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Map Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 2, 0)
-size = Vector3(1, 5, 29.9)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Map Geometry"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0999994, 2, -14.5)
-size = Vector3(1, 5, 29.9)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Map Geometry"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0999994, 2, 14.4)
-size = Vector3(1, 5, 29.9)
-
 [node name="Enemy" parent="." instance=ExtResource("2_wvtpi")]
-transform = Transform3D(-0.821796, 0, 0.569782, 0, 1, 0, -0.569782, 0, -0.821796, -5.09795, 0.0504156, 5.48195)
+transform = Transform3D(0.479672, 0, -0.877448, 0, 1, 0, 0.877448, 0, 0.479672, 1.63836, 0.55314, -0.986726)
 
 [node name="Player" parent="." instance=ExtResource("1_if2mf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.4, 3.3)
-slide_on_ceiling = false
-floor_stop_on_slope = false
-jump_velocity = 5.5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.859749, 0.508781, 1.31538)
+jump_velocity = 6.0
+sprint_speed = 9.0
+ground_accel = 16.0
+ground_friction = 7.0
+air_cap = 1.2
+air_accel = 1000.0
+air_move_speed = 600.0
 
-[editable path="Player"]
+[node name="FuncGodotMap" type="Node3D" parent="."]
+script = ExtResource("3_pxri7")
+local_map_file = "uid://mg4b7ynnie14"
+map_settings = ExtResource("4_7xyeq")
+metadata/_custom_type_script = "uid://caaqcqevq0jga"
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap"]
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
+mesh = SubResource("ArrayMesh_yhki7")
+
+[node name="entity_0_occluder_instance" type="OccluderInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
+occluder = SubResource("ArrayOccluder3D_00j7a")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_l0p44")

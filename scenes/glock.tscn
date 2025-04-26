@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://buxdf0x8bx8j1" path="res://models/weapons/glock_test/Low_poly_glock.glb" id="1_iy1he"]
 [ext_resource type="Shader" uid="uid://cb4oajhgi3ms0" path="res://shaders/psx.gdshader" id="2_n3x3b"]
-[ext_resource type="Texture2D" uid="uid://1oy7445hlyi2" path="res://models/weapons/glock_test/Low_poly_glock_glock_texture.png" id="3_ed8ij"]
+[ext_resource type="Texture2D" uid="uid://1oy7445hlyi2" path="res://textures/weapons/Low_poly_glock_glock_texture.png" id="3_ed8ij"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nafni"]
 render_priority = 0
