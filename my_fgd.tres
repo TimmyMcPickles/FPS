@@ -7,7 +7,7 @@
 script = ExtResource("1_qkuc6")
 export_file = false
 target_map_editor = 1
-fgd_name = "FPS"
+fgd_name = "FuncGodot"
 base_fgd_files = Array[Resource]([ExtResource("1_rcank")])
 entity_definitions = Array[Resource]([])
 metadata/_custom_type_script = "uid://b31redss4h1gh"
