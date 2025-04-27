@@ -1,8 +1,12 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dug8kpbm13dfm"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dug8kpbm13dfm"]
 
 [ext_resource type="Texture2D" uid="uid://empbu40beyiu" path="res://textures/world/grass.png" id="1_x8mu7"]
+[ext_resource type="Texture2D" uid="uid://cku72eos6uoab" path="res://textures/world/grass_normal.png" id="2_0tryg"]
 
 [resource]
 albedo_texture = ExtResource("1_x8mu7")
 metallic_specular = 0.0
+normal_enabled = true
+normal_scale = 1.55
+normal_texture = ExtResource("2_0tryg")
 texture_filter = 2
