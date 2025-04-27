@@ -16,6 +16,9 @@ extends CharacterBody3D
 @export var air_accel := 800.0
 @export var air_move_speed := 500.0
 
+# Water movement settings
+@export var swim_up_speed := 10.0
+
 # Wall sliding fix
 @export var wall_slide_threshold := 0.2
 
@@ -24,6 +27,7 @@ extends CharacterBody3D
 
 var wish_dir := Vector3.ZERO
 var was_on_floor := false
+var cam_aligned_wish_dir := Vector3.ZERO
 
 func get_move_speed() -> float:
 	return sprint_speed if Input.is_action_pressed("sprint") else walk_speed
@@ -52,7 +56,8 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "up", "down").normalized()
 	wish_dir = self.global_transform.basis * Vector3(input_dir.x, 0., input_dir.y)
-
+	cam_aligned_wish_dir = %Camera3D.global_transform.basis * Vector3(input_dir.x, 0., input_dir.y)
+	
 	# Check if we were on the floor last frame
 	was_on_floor = is_on_floor()
 
