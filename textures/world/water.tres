@@ -1,11 +1,25 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cjy088rguwyq0"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://v8a6vp5xrbob"]
 
 [ext_resource type="Texture2D" uid="uid://c18c02nqj81ky" path="res://textures/world/water.png" id="1_1qfv4"]
+[ext_resource type="Shader" uid="uid://rku0nbv1g4m" path="res://shaders/water.gdshader" id="1_xj2wf"]
 
 [resource]
-transparency = 1
-cull_mode = 2
-albedo_color = Color(1, 1, 1, 0.309804)
-albedo_texture = ExtResource("1_1qfv4")
-metallic_specular = 0.0
-texture_filter = 2
+render_priority = 0
+shader = ExtResource("1_xj2wf")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("1_1qfv4")
+shader_parameter/albedo_texture_size = Vector2i(128, 128)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/amount = 0.8
+shader_parameter/speed = 1.0
+shader_parameter/beer_factor = 0.3
+shader_parameter/emission = Vector3(0, 0, 0)
+shader_parameter/texture_scale = Vector2(1, 1)
