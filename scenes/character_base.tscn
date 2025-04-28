@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://byba5t3cu151r"]
+[gd_scene load_steps=4 format=3 uid="uid://byba5t3cu151r"]
 
 [ext_resource type="PackedScene" uid="uid://dbfdkv62b7gbl" path="res://models/guy/guyV1.glb" id="1_mx1f8"]
+[ext_resource type="Shader" uid="uid://cb4oajhgi3ms0" path="res://shaders/psx.gdshader" id="2_n45ic"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_psumi"]
+render_priority = 0
+shader = ExtResource("2_n45ic")
+shader_parameter/paletteswap = false
+shader_parameter/snapRes = 50.0
 
 [node name="Character_Base" instance=ExtResource("1_mx1f8")]
 
@@ -90,7 +97,6 @@ bones/86/position = Vector3(-0.120967, 0.0662979, -0.0243574)
 bones/86/rotation = Quaternion(0.963704, -0.13533, 0.179747, -0.143707)
 bones/86/scale = Vector3(1, 1, 1)
 bones/87/rotation = Quaternion(-4.34229e-08, -2.67755e-07, 4.85452e-08, 1)
-bones/87/scale = Vector3(1, 1, 1)
 bones/88/rotation = Quaternion(0.098456, -1.81372e-07, -2.98724e-08, 0.995141)
 bones/88/scale = Vector3(1, 1, 1)
 bones/89/rotation = Quaternion(1.11759e-08, -3.72529e-09, 7.45058e-08, 1)
@@ -118,7 +124,6 @@ bones/107/rotation = Quaternion(-0.811797, -2.78069e-07, -6.40783e-08, 0.58394)
 bones/108/position = Vector3(-2.36715e-14, 1.51593e-08, 1.91445e-08)
 bones/108/rotation = Quaternion(0.707107, -1.69074e-07, -6.41381e-08, 0.707107)
 bones/110/rotation = Quaternion(-1.71363e-07, 5.32908e-15, -4.26326e-14, 1)
-bones/110/scale = Vector3(1, 1, 1)
 bones/111/rotation = Quaternion(5.96046e-07, -8.3844e-13, -2.52243e-13, 1)
 bones/111/scale = Vector3(1, 1, 1)
 bones/115/rotation = Quaternion(-0.460104, -0.513263, -0.459437, 0.560164)
@@ -193,3 +198,6 @@ bones/210/rotation = Quaternion(0.978729, -0.0358198, 0.00737505, -0.201874)
 bones/213/rotation = Quaternion(1.351e-07, 5.03286e-16, 1, 6.08805e-22)
 bones/214/position = Vector3(-0.591497, 0.557806, 0.87851)
 bones/214/rotation = Quaternion(-0.707107, 3.24127e-10, 9.77527e-11, 0.707107)
+
+[node name="Cube" parent="rig/Skeleton3D" index="0"]
+material_override = SubResource("ShaderMaterial_psumi")
