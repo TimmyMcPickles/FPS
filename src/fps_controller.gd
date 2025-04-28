@@ -60,13 +60,14 @@ func _physics_process(delta):
 	
 	# Check if we were on the floor last frame
 	was_on_floor = is_on_floor()
-
-	if is_on_floor():
-		if Input.is_action_just_pressed("jump") or (auto_bhop and Input.is_action_pressed("jump")):
-			self.velocity.y = jump_velocity
-		_handle_ground_physics(delta)
-	else:
-		_handle_air_physics(delta)
+	
+	if not _handle_water_physics(delta):
+		if is_on_floor():
+			if Input.is_action_just_pressed("jump") or (auto_bhop and Input.is_action_pressed("jump")):
+				self.velocity.y = jump_velocity
+			_handle_ground_physics(delta)
+		else:
+			_handle_air_physics(delta)
 
 	# Always use MOTION_MODE_GROUNDED
 	self.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
@@ -95,6 +96,22 @@ func handle_wall_slide(wall_normal: Vector3, delta: float) -> void:
 
 	# Apply the slide velocity with a small reduction to prevent sticking
 	velocity = slide_velocity * (1.0 - wall_slide_threshold)
+
+func _handle_water_physics(delta) -> bool:
+	if get_tree().get_nodes_in_group("water").all(func(area): return !area.overlaps_body(self)):
+		return false
+	
+	if not is_on_floor():
+		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * 0.3 * delta
+	
+	self.velocity += cam_aligned_wish_dir * get_move_speed() * delta
+	
+	if Input.is_action_pressed("jump"):
+		self.velocity.y += swim_up_speed * delta
+	
+	self.velocity = self.velocity.lerp(Vector3.ZERO, 1.5 * delta)
+	
+	return true
 
 func _handle_air_physics(delta) -> void:
 	self.velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * delta
