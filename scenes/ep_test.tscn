@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://b2rgn6ww7cl55"]
+[gd_scene load_steps=51 format=4 uid="uid://b2rgn6ww7cl55"]
 
 [ext_resource type="Texture2D" uid="uid://b3xskw0d2fi1w" path="res://textures/world/skybox.png" id="1_cryha"]
 [ext_resource type="PackedScene" uid="uid://d7umbutl2yhq" path="res://scenes/fpsController.tscn" id="1_if2mf"]
@@ -203,24 +203,6 @@ _surfaces = [{
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d7xmh"]
 points = PackedVector3Array(-3.82031, 1.74544, -5.69531, -3.82031, -1.74544, -5.69531, 3.82031, -1.74544, -5.69531, 3.82031, 1.74544, -5.69531, -3.82031, 1.74544, 5.69531, -3.82031, -1.74544, 5.69531, 3.82031, -1.74544, 5.69531, 3.82031, 1.74544, 5.69531)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_745ig"]
-_surfaces = [{
-"aabb": AABB(-5.5, -3, -5, 11, 6, 10),
-"attribute_data": PackedByteArray("AACQvwAAYL8AAJC/AAAAvgAAeMAAAAC+AAB4wAAAYL8AAAhAAABgvwAAlEAAAGC/AACUQAAAAL4AAAhAAAAAvgAACMAAAHjAAAAIwAAAkL8AAJTAAACQvwAAlMAAAHjAAAAIQAAAeMAAAJRAAAB4wAAAlEAAAJC/AAAIQAAAkL8AAAjAAABgvwAACMAAAAC+AACUwAAAAL4AAJTAAABgvwAAkD8AAGC/AAB4QAAAYL8AAHhAAAAAvgAAkD8AAAC+"),
-"format": 34359742487,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
-"material": ExtResource("12_cvn5h"),
-"name": "world/water",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("AACwwAAAQEAAAKDAAACwwAAAQMAAAKDAAACwQAAAQMAAAKDAAACwQAAAQEAAAKDAAACwwAAAQEAAAKDAAACwwAAAQEAAAKBAAACwwAAAQMAAAKBAAACwwAAAQMAAAKDAAACwQAAAQMAAAKDAAACwwAAAQMAAAKDAAACwwAAAQMAAAKBAAACwQAAAQMAAAKBAAACwQAAAQEAAAKDAAACwQAAAQEAAAKBAAACwwAAAQEAAAKBAAACwwAAAQEAAAKDAAACwQAAAQEAAAKDAAACwQAAAQMAAAKDAAACwQAAAQMAAAKBAAACwQAAAQEAAAKBAAACwwAAAQEAAAKBAAACwQAAAQEAAAKBAAACwQAAAQMAAAKBAAACwwAAAQMAAAKBA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
-}]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7ff5t"]
-points = PackedVector3Array(-5.5, 3, -5, -5.5, -3, -5, 5.5, -3, -5, 5.5, 3, -5, -5.5, 3, 5, -5.5, -3, 5, 5.5, -3, 5, 5.5, 3, 5)
-
 [node name="ep_test" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -360,15 +342,5 @@ mesh = SubResource("ArrayMesh_a2id6")
 
 [node name="entity_1_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_1_Water"]
 shape = SubResource("ConvexPolygonShape3D_d7xmh")
-
-[node name="entity_2_Water" type="Area3D" parent="FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 3.5, 14)
-script = ExtResource("11_cvn5h")
-
-[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_2_Water"]
-mesh = SubResource("ArrayMesh_745ig")
-
-[node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_2_Water"]
-shape = SubResource("ConvexPolygonShape3D_7ff5t")
 
 [editable path="Player"]
