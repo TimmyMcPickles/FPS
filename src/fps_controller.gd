@@ -1,5 +1,12 @@
 extends CharacterBody3D
 
+@export var hp_max: int = 100 : set = set_hp_max 
+@export var hp: int = hp_max : set = set_hp 
+
+signal hp_max_changed(new_hp_max) 
+signal hp_changed(new_hp)
+signal died
+
 @export var look_sensitivity : float = 0.006
 @export var jump_velocity := 6.0
 @export var auto_bhop := true
@@ -118,3 +125,27 @@ func _handle_ground_physics(delta) -> void:
 	if self.velocity.length() > 0:
 		new_speed /= self.velocity.length()
 	self.velocity *= new_speed
+
+func set_hp_max(value):
+	if value != hp_max:
+		hp_max = max(1, value)
+		emit_signal("hp_max_changed", hp_max)
+		self.hp = hp
+
+func set_hp(value):
+	if value != hp:
+		hp = clamp(value, 0, hp_max)
+		emit_signal("hp_changed", hp) #emit signal 
+		if hp == 0:
+			emit_signal("died")
+
+func receive_damage(damage_taken):
+	self.hp -= damage_taken #use self.hp so that set_hp() gets called automatically when we adjust it
+
+func die():
+	queue_free()
+
+func _on_hurtbox_area_entered(hitbox: Area3D) -> void:
+	#receive_damage(hitbox.damage)
+	print("I have been hurt!")
+	velocity += hitbox.get_knockback()

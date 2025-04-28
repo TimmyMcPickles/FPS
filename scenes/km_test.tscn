@@ -117,7 +117,7 @@ points = PackedVector3Array(-22.5, 4, 3, -22.5, 3.5, 3, -18.5, 3.5, 3, -18.5, 4,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.838342, 0)
 
 [node name="SawedOffShotty" parent="CharacterBody3D/Head/Camera3D" index="0" instance=ExtResource("2_a1557")]
-transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0.279884, -0.493012, -1.02942)
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, 0.279884, -0.493012, -0.532165)
 active = true
 heldByPlayer = true
 
@@ -192,3 +192,4 @@ shape = SubResource("ConvexPolygonShape3D_ubu2d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.706395, -6.41837)
 
 [editable path="CharacterBody3D"]
+[editable path="CharacterBody3D/hurtbox"]

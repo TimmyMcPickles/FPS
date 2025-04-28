@@ -352,3 +352,4 @@ shape = SubResource("ConvexPolygonShape3D_1ngql")
 shape = SubResource("ConvexPolygonShape3D_ag2mb")
 
 [editable path="Player"]
+[editable path="Player/hurtbox"]
