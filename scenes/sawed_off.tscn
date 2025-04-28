@@ -120,7 +120,7 @@ libraries = {
 autoplay = "RESET"
 
 [node name="pelletspawn" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.02055e-05, 0.019714, -0.574023)
+transform = Transform3D(1, 1.8674e-11, 0, 2.63078e-12, 1, 0, 0, 0, 1, -0.000117737, 0.019648, 0.0215574)
 target_position = Vector3(0, 0, -1)
 collision_mask = 0
 
