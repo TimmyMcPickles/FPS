@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnma2y2oyghy4"]
+[gd_scene load_steps=8 format=3 uid="uid://dnma2y2oyghy4"]
 
 [ext_resource type="Script" uid="uid://vuddt07cvhx2" path="res://src/bullet_glock.gd" id="1_amlhe"]
 [ext_resource type="Material" uid="uid://ctga5btbni4ax" path="res://src/bullet_glock_temp.tres" id="2_58t77"]
+[ext_resource type="PackedScene" uid="uid://bsn4cita3mqm3" path="res://scenes/hitbox.tscn" id="3_gr7qi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lgvav"]
 size = Vector3(0.05, 0.05, 1)
@@ -15,6 +16,9 @@ initial_velocity_max = 5.0
 material = ExtResource("2_58t77")
 size = Vector3(0.04, 0.04, 0.04)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ctusa"]
+size = Vector3(0.05, 0.05, 1.1)
+
 [node name="bullet_glock" type="Node3D"]
 script = ExtResource("1_amlhe")
 
@@ -24,6 +28,7 @@ surface_material_override/0 = ExtResource("2_58t77")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -0.6)
+collision_mask = 5
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.54783)
@@ -37,4 +42,14 @@ draw_pass_1 = SubResource("BoxMesh_ctusa")
 wait_time = 10.0
 autostart = true
 
+[node name="hitbox" parent="." instance=ExtResource("3_gr7qi")]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" parent="hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.050025)
+shape = SubResource("BoxShape3D_ctusa")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="hitbox"]

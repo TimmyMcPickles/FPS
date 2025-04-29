@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d7umbutl2yhq"]
+[gd_scene load_steps=8 format=3 uid="uid://d7umbutl2yhq"]
 
 [ext_resource type="Script" uid="uid://caja55j6biwkq" path="res://src/fps_controller.gd" id="1_reen0"]
 [ext_resource type="Shader" uid="uid://cb4oajhgi3ms0" path="res://shaders/psx.gdshader" id="2_w7u6x"]
 [ext_resource type="ArrayMesh" uid="uid://bakt4squh8ae4" path="res://models/guy/guyV1_Cube.res" id="3_n4b2a"]
+[ext_resource type="PackedScene" uid="uid://kg0le4ychii" path="res://scenes/hurtbox.tscn" id="4_w2no2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_reen0"]
 
@@ -12,7 +13,12 @@ shader = ExtResource("2_w7u6x")
 shader_parameter/paletteswap = false
 shader_parameter/snapRes = 50.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_n4b2a"]
+size = Vector3(0.7, 2, 0.4)
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_reen0")
 jump_velocity = 7.0
 
@@ -35,3 +41,15 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79, 0)
 cull_mask = 1048573
+
+[node name="hurtbox" parent="." instance=ExtResource("4_w2no2")]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" parent="hurtbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06369, 0)
+shape = SubResource("BoxShape3D_n4b2a")
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="hurtbox"]

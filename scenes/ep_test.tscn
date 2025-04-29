@@ -344,3 +344,4 @@ mesh = SubResource("ArrayMesh_a2id6")
 shape = SubResource("ConvexPolygonShape3D_d7xmh")
 
 [editable path="Player"]
+[editable path="Player/hurtbox"]
