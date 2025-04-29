@@ -54,3 +54,4 @@ slide_on_ceiling = false
 jump_velocity = 5.5
 
 [editable path="CharacterBody3D"]
+[editable path="CharacterBody3D/hurtbox"]
