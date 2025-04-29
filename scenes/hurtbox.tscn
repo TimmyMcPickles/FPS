@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://kg0le4ychii"]
+[gd_scene load_steps=0 format=3 uid="uid://kg0le4ychii"]
 
 [node name="hurtbox" type="Area3D"]
 monitorable = false
