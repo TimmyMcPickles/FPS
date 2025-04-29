@@ -1,8 +1,7 @@
-[gd_scene load_steps=51 format=4 uid="uid://b2rgn6ww7cl55"]
+[gd_scene load_steps=50 format=4 uid="uid://b2rgn6ww7cl55"]
 
 [ext_resource type="Texture2D" uid="uid://b3xskw0d2fi1w" path="res://textures/world/skybox.png" id="1_cryha"]
 [ext_resource type="PackedScene" uid="uid://d7umbutl2yhq" path="res://scenes/fpsController.tscn" id="1_if2mf"]
-[ext_resource type="PackedScene" uid="uid://c7x033y4kqr8q" path="res://scenes/enemy.tscn" id="2_wvtpi"]
 [ext_resource type="PackedScene" uid="uid://nylwjwdqq81k" path="res://scenes/glock.tscn" id="3_00j7a"]
 [ext_resource type="Script" uid="uid://caaqcqevq0jga" path="res://addons/func_godot/src/map/func_godot_map.gd" id="3_pxri7"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="4_7xyeq"]
@@ -212,18 +211,8 @@ environment = SubResource("Environment_0wfyh")
 transform = Transform3D(0.857714, -0.226039, 0.461771, -0.24973, 0.601922, 0.758502, -0.449401, -0.765896, 0.459828, 0.4, 10.4, -0.2)
 shadow_enabled = true
 
-[node name="Enemy" parent="." instance=ExtResource("2_wvtpi")]
-transform = Transform3D(-0.936514, 0, -0.350632, 0, 1, 0, 0.350632, 0, -0.936514, 0.650935, 0.523697, 4.52918)
-
 [node name="Player" parent="." instance=ExtResource("1_if2mf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.859749, 0.508781, 1.31538)
-jump_velocity = 6.0
-sprint_speed = 9.0
-ground_accel = 16.0
-ground_friction = 7.0
-air_cap = 1.2
-air_accel = 1000.0
-air_move_speed = 600.0
 
 [node name="Low_poly_glock" parent="Player/Head/Camera3D" index="0" instance=ExtResource("3_00j7a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.384199, -0.3462, -0.581208)
