@@ -107,7 +107,7 @@ transform = Transform3D(1, -9.18107e-05, 6.30067e-05, 9.18107e-05, 1, 0.00011079
 script = ExtResource("1_k2htc")
 
 [node name="SawedOff" parent="." instance=ExtResource("1_hq031")]
-transform = Transform3D(-1.89535e-07, 0, 0.0523579, 0, 0.0523579, 0, -0.0523579, 0, -1.89535e-07, 0, 0, 0)
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 0)
 
 [node name="Cube" parent="SawedOff" index="0"]
 material_override = SubResource("ShaderMaterial_xma8n")

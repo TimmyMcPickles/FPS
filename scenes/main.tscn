@@ -53,5 +53,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.4, 3.3)
 slide_on_ceiling = false
 jump_velocity = 5.5
 
+[node name="glock" parent="CharacterBody3D/Head/Camera3D/Weapon_Manager/Weapon" index="0"]
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, -1.61229, 0)
+
 [editable path="CharacterBody3D"]
 [editable path="CharacterBody3D/hurtbox"]
