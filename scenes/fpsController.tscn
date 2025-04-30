@@ -17,6 +17,45 @@ shader = ExtResource("2_w7u6x")
 shader_parameter/paletteswap = false
 shader_parameter/snapRes = 50.0
 
+[sub_resource type="Animation" id="Animation_ql11t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glock:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.61229, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glock:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("glock:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_fxst0"]
 resource_name = "glock Activate"
 length = 0.2667
@@ -55,45 +94,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_ql11t"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("glock:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -1.61229, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("glock:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("glock:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_t2qo1"]
@@ -136,9 +136,9 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_sn1b2"]
-resource_name = "glock Shoot"
-length = 0.1337
+[sub_resource type="Animation" id="Animation_mrmi2"]
+resource_name = "glock NoAmmo"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -146,22 +146,10 @@ tracks/0/path = NodePath("glock:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0395818, 0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0499205, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.398489, -0.352147, -0.558452), Vector3(0.398489, -0.352147, -0.515227), Vector3(0.398489, -0.352147, -0.486352), Vector3(0.398, -0.352, -0.558)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("glock:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0395818, 0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.0174533), Vector3(0, 1.5708, 0.268781), Vector3(0, 1.5708, 0)]
+"values": [Vector3(0.398489, -0.352147, -0.558452), Vector3(0.398, -0.352, -0.5), Vector3(0.398, -0.352, -0.558)]
 }
 
 [sub_resource type="Animation" id="Animation_w2no2"]
@@ -192,9 +180,9 @@ tracks/1/keys = {
 "values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 6.28319)]
 }
 
-[sub_resource type="Animation" id="Animation_mrmi2"]
-resource_name = "glock NoAmmo"
-length = 0.1
+[sub_resource type="Animation" id="Animation_sn1b2"]
+resource_name = "glock Shoot"
+length = 0.1337
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -202,10 +190,22 @@ tracks/0/path = NodePath("glock:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0499205, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0395818, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.398489, -0.352147, -0.558452), Vector3(0.398, -0.352, -0.5), Vector3(0.398, -0.352, -0.558)]
+"values": [Vector3(0.398489, -0.352147, -0.558452), Vector3(0.398489, -0.352147, -0.515227), Vector3(0.398489, -0.352147, -0.486352), Vector3(0.398, -0.352, -0.558)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glock:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0395818, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.0174533), Vector3(0, 1.5708, 0.268781), Vector3(0, 1.5708, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sn1b2"]
@@ -260,7 +260,7 @@ start_weapons = Array[String](["glock"])
 [node name="Weapon" type="Node3D" parent="Head/Camera3D/Weapon_Manager"]
 
 [node name="glock" parent="Head/Camera3D/Weapon_Manager/Weapon" instance=ExtResource("4_t2qo1")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.61229, 0)
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, -1.61229, 0)
 visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Camera3D/Weapon_Manager/Weapon"]
