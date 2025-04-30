@@ -1,11 +1,9 @@
-[gd_scene load_steps=52 format=4 uid="uid://b2rgn6ww7cl55"]
+[gd_scene load_steps=50 format=4 uid="uid://b2rgn6ww7cl55"]
 
 [ext_resource type="Texture2D" uid="uid://b3xskw0d2fi1w" path="res://textures/world/skybox.png" id="1_cryha"]
 [ext_resource type="PackedScene" uid="uid://d7umbutl2yhq" path="res://scenes/fpsController.tscn" id="1_if2mf"]
-[ext_resource type="PackedScene" uid="uid://nylwjwdqq81k" path="res://scenes/glock.tscn" id="3_00j7a"]
 [ext_resource type="Script" uid="uid://caaqcqevq0jga" path="res://addons/func_godot/src/map/func_godot_map.gd" id="3_pxri7"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="4_7xyeq"]
-[ext_resource type="PackedScene" uid="uid://c7x033y4kqr8q" path="res://scenes/enemy.tscn" id="4_cvn5h"]
 [ext_resource type="Material" uid="uid://o81rl7pitaii" path="res://textures/special/sal.tres" id="5_7xyeq"]
 [ext_resource type="Material" uid="uid://dug8kpbm13dfm" path="res://textures/world/grass.tres" id="6_7xyeq"]
 [ext_resource type="Material" uid="uid://cco4bvr5cjwub" path="res://textures/world/dirt.tres" id="8_cvn5h"]
@@ -219,9 +217,6 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_if2mf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.859749, 0.508781, 1.31538)
 
-[node name="Low_poly_glock" parent="Player/Head/Camera3D" index="0" instance=ExtResource("3_00j7a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.384199, -0.3462, -0.581208)
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_cvn5h")
 
@@ -340,8 +335,7 @@ mesh = SubResource("ArrayMesh_d7xmh")
 [node name="entity_1_brush_0_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_1_Water"]
 shape = SubResource("ConvexPolygonShape3D_745ig")
 
-[node name="Enemy" parent="." instance=ExtResource("4_cvn5h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.56283, 0.5, 7.86346)
+[connection signal="animation_finished" from="Player/Head/Camera3D/Weapon_Manager/Weapon/AnimationPlayer" to="Player/Head/Camera3D/Weapon_Manager" method="_on_animation_player_animation_finished"]
 
 [editable path="Player"]
 [editable path="Player/hurtbox"]

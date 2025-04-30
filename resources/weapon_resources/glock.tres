@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://cn6uylro35ohg"]
+
+[ext_resource type="Script" uid="uid://wawloi0t01i8" path="res://src/weapon_resource.gd" id="1_3nlvr"]
+
+[resource]
+script = ExtResource("1_3nlvr")
+weapon_name = "glock"
+activate_anim = "glock Activate"
+deactivate_anim = "glock Deactivate"
+shoot_anim = "glock Shoot"
+reload_anim = "glock Reload"
+no_ammo_anim = "glock NoAmmo"
+current_ammo = 10
+reserve_ammo = 10
+magazine = 10
+max_ammo = 100
+auto_fire = false
+metadata/_custom_type_script = "uid://wawloi0t01i8"
