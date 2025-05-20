@@ -20,6 +20,10 @@ func _input(event):
 	if event.is_action_pressed("weapon_down"):
 		weapon_indicator = max(weapon_indicator-1,0)
 		exit(weapon_stack[weapon_indicator])
+	if event.is_action_pressed("shoot"):
+		shoot()
+	if event.is_action_pressed("reload"):
+		reload()
 	
 
 func initialize(_start_weapons: Array):
@@ -52,3 +56,9 @@ func change_weapon(weapon_name: String):
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == current_weapon.deactivate_anim:
 		change_weapon(next_weapon)
+
+func shoot():
+	animation_player.play(current_weapon.shoot_anim)
+
+func reload():
+	animation_player.play(current_weapon.reload_anim)

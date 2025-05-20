@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://bybcn80dhb710"]
+
+[ext_resource type="Script" uid="uid://wawloi0t01i8" path="res://src/weapon_resource.gd" id="1_8lbk1"]
+
+[resource]
+script = ExtResource("1_8lbk1")
+weapon_name = "shotty"
+activate_anim = "shotty Activate"
+deactivate_anim = "shotty Deactivate"
+shoot_anim = "shotty Shoot"
+reload_anim = "shotty Reload"
+no_ammo_anim = "shotty Noammo"
+current_ammo = 2
+reserve_ammo = 2
+magazine = 2
+max_ammo = 12
+auto_fire = false
+spread_shot = true
+kickback = true
+knockback = true
+metadata/_custom_type_script = "uid://wawloi0t01i8"

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://w2espkmg72b"]
+
+[ext_resource type="PackedScene" uid="uid://vavo7c6muqei" path="res://models/weapons/SawedOff/SawedOff.glb" id="1_nail3"]
+
+[node name="shotty" type="Node3D"]
+
+[node name="SawedOff" parent="." instance=ExtResource("1_nail3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

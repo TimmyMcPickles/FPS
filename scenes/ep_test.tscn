@@ -1,10 +1,13 @@
-[gd_scene load_steps=50 format=4 uid="uid://b2rgn6ww7cl55"]
+[gd_scene load_steps=53 format=4 uid="uid://b2rgn6ww7cl55"]
 
 [ext_resource type="Texture2D" uid="uid://b3xskw0d2fi1w" path="res://textures/world/skybox.png" id="1_cryha"]
 [ext_resource type="PackedScene" uid="uid://d7umbutl2yhq" path="res://scenes/fpsController.tscn" id="1_if2mf"]
+[ext_resource type="Script" uid="uid://wawloi0t01i8" path="res://src/weapon_resource.gd" id="3_k168y"]
 [ext_resource type="Script" uid="uid://caaqcqevq0jga" path="res://addons/func_godot/src/map/func_godot_map.gd" id="3_pxri7"]
+[ext_resource type="Resource" uid="uid://cn6uylro35ohg" path="res://resources/weapon_resources/glock.tres" id="4_4k6vn"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="4_7xyeq"]
 [ext_resource type="Material" uid="uid://o81rl7pitaii" path="res://textures/special/sal.tres" id="5_7xyeq"]
+[ext_resource type="Resource" uid="uid://bybcn80dhb710" path="res://resources/weapon_resources/shotty.tres" id="5_qlnwn"]
 [ext_resource type="Material" uid="uid://dug8kpbm13dfm" path="res://textures/world/grass.tres" id="6_7xyeq"]
 [ext_resource type="Material" uid="uid://cco4bvr5cjwub" path="res://textures/world/dirt.tres" id="8_cvn5h"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="10_k168y"]
@@ -206,6 +209,7 @@ _surfaces = [{
 points = PackedVector3Array(-3.82031, 1.74544, -5.69531, -3.82031, -1.74544, -5.69531, 3.82031, -1.74544, -5.69531, 3.82031, 1.74544, -5.69531, -3.82031, 1.74544, 5.69531, -3.82031, -1.74544, 5.69531, 3.82031, -1.74544, 5.69531, 3.82031, 1.74544, 5.69531)
 
 [node name="ep_test" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00807714, 2.38419e-07, 0.00140953)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0wfyh")
@@ -217,8 +221,12 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_if2mf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.859749, 0.508781, 1.31538)
 
-[node name="glock" parent="Player/Head/Camera3D/Weapon_Manager/Weapon" index="0"]
-transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, -1.61229, 0)
+[node name="Weapon_Manager" parent="Player/Head/Camera3D" index="0"]
+_weapon_resources = Array[ExtResource("3_k168y")]([ExtResource("4_4k6vn"), ExtResource("5_qlnwn")])
+start_weapons = Array[String](["glock", "shotty"])
+
+[node name="shotty" parent="Player/Head/Camera3D/Weapon_Manager/Weapon" index="1"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -1.62199, 0.156312)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_cvn5h")
@@ -330,6 +338,7 @@ shape = SubResource("ConvexPolygonShape3D_a2id6")
 
 [node name="entity_1_Water" type="Area3D" parent="NavigationRegion3D/FuncGodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.38281, -1.74544, 13.7734)
+collision_mask = 6
 script = ExtResource("11_cvn5h")
 
 [node name="entity_1_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_1_Water"]
