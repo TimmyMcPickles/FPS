@@ -15,3 +15,6 @@ class_name Weapon_Resource
 @export var max_ammo: int
 
 @export var auto_fire: bool
+@export var spread_shot: bool
+@export var kickback: bool #gun knocking user back
+@export var knockback: bool #gun knocking target back
