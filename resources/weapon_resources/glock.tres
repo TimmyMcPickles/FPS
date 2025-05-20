@@ -15,4 +15,7 @@ reserve_ammo = 10
 magazine = 10
 max_ammo = 100
 auto_fire = false
+spread_shot = false
+kickback = false
+knockback = false
 metadata/_custom_type_script = "uid://wawloi0t01i8"

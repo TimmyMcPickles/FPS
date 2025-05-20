@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d7umbutl2yhq"]
+[gd_scene load_steps=26 format=3 uid="uid://d7umbutl2yhq"]
 
 [ext_resource type="Script" uid="uid://caja55j6biwkq" path="res://src/fps_controller.gd" id="1_reen0"]
 [ext_resource type="Shader" uid="uid://cb4oajhgi3ms0" path="res://shaders/psx.gdshader" id="2_w7u6x"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://kg0le4ychii" path="res://scenes/hurtbox.tscn" id="4_w2no2"]
 [ext_resource type="Script" uid="uid://wawloi0t01i8" path="res://src/weapon_resource.gd" id="5_sn1b2"]
 [ext_resource type="Resource" uid="uid://cn6uylro35ohg" path="res://resources/weapon_resources/glock.tres" id="6_mrmi2"]
+[ext_resource type="Resource" uid="uid://bybcn80dhb710" path="res://resources/weapon_resources/shotty.tres" id="7_mrmi2"]
 [ext_resource type="PackedScene" uid="uid://w2espkmg72b" path="res://scenes/shotty.tscn" id="8_sn1b2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_reen0"]
@@ -448,8 +449,8 @@ cull_mask = 1048573
 
 [node name="Weapon_Manager" type="Node3D" parent="Head/Camera3D"]
 script = ExtResource("4_ql11t")
-_weapon_resources = Array[ExtResource("5_sn1b2")]([ExtResource("6_mrmi2")])
-start_weapons = Array[String](["glock"])
+_weapon_resources = Array[ExtResource("5_sn1b2")]([ExtResource("6_mrmi2"), ExtResource("7_mrmi2")])
+start_weapons = Array[String](["glock", "shotty"])
 
 [node name="Weapon" type="Node3D" parent="Head/Camera3D/Weapon_Manager"]
 
