@@ -57,7 +57,7 @@ func _unhandled_input(event):
 			%Camera3D.rotation.x = clamp(%Camera3D.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 			# Reset unwanted rotations that can cause camera flipping
 			%Camera3D.rotation.y = 0
-			%Camera3D.rotation.z = clamp(%Camera3D.rotation.z, deg_to_rad(-5), deg_to_rad(5))
+			# Z rotation will be managed in _physics_process
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "up", "down").normalized()
@@ -83,17 +83,28 @@ func _physics_process(delta):
 		var wall_normal = get_wall_normal()
 		handle_wall_slide(wall_normal, delta)
 
-	# Only apply camera tilt when on the ground to prevent flipping when jumping
-	if is_on_floor():
-		if input_dir.x > 0:
-			$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(-5), tilt_mod)
-		elif input_dir.x < 0:
-			$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(5), tilt_mod)
-		else:
-			$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(0), tilt_mod)
-	else:
-		# Gradually return to neutral when in the air
-		$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(0), tilt_mod * 2)
+	# Apply camera tilt based on movement direction
+	var target_tilt = 0.0
+	var tilt_multiplier = 1.0
+	
+	# Looking down can cause instability, so reduce tilt in that case
+	var look_down_factor = max(0.0, 1.0 - abs(%Camera3D.rotation.x) / (PI/2))
+	
+	if input_dir.x > 0:
+		target_tilt = -5
+	elif input_dir.x < 0:
+		target_tilt = 5
+	
+	# Reduce tilt intensity in the air to prevent flipping issues
+	if !is_on_floor():
+		tilt_multiplier = 0.7 * look_down_factor
+	
+	# Apply tilt with appropriate intensity
+	var effective_tilt_mod = tilt_mod * tilt_multiplier
+	$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(target_tilt), effective_tilt_mod)
+	
+	# Clamp rotation to prevent extreme angles that can cause flipping
+	$%Camera3D.rotation.z = clamp($%Camera3D.rotation.z, deg_to_rad(-5), deg_to_rad(5))
 
 	move_and_slide()
 
