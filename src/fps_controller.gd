@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
-@export var hp_max: int = 100 : set = set_hp_max 
-@export var hp: int = hp_max : set = set_hp 
+@export var hp_max: int = 100 : set = set_hp_max
+@export var hp: int = hp_max : set = set_hp
 
-signal hp_max_changed(new_hp_max) 
+signal hp_max_changed(new_hp_max)
 signal hp_changed(new_hp)
 signal died
 
@@ -55,19 +55,18 @@ func _unhandled_input(event):
 			rotate_y(-event.relative.x * look_sensitivity)
 			%Camera3D.rotate_x(-event.relative.y * look_sensitivity)
 			%Camera3D.rotation.x = clamp(%Camera3D.rotation.x, deg_to_rad(-90), deg_to_rad(90))
-			#Camera3d was getting rotations on y and z when it shouldn't have as the system tried to match camera x rotation and players body rotation
-				#Locking these values to 0 seems to have fixed this
-			%Camera3D.rotation.y = 0 
-			%Camera3D.rotation.z = 0
+			# Reset unwanted rotations that can cause camera flipping
+			%Camera3D.rotation.y = 0
+			%Camera3D.rotation.z = clamp(%Camera3D.rotation.z, deg_to_rad(-5), deg_to_rad(5))
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "up", "down").normalized()
 	wish_dir = self.global_transform.basis * Vector3(input_dir.x, 0., input_dir.y)
 	cam_aligned_wish_dir = %Camera3D.global_transform.basis * Vector3(input_dir.x, 0., input_dir.y)
-	
+
 	# Check if we were on the floor last frame
 	was_on_floor = is_on_floor()
-	
+
 	if not _handle_water_physics(delta):
 		if is_on_floor():
 			if Input.is_action_just_pressed("jump") or (auto_bhop and Input.is_action_pressed("jump")):
@@ -83,13 +82,18 @@ func _physics_process(delta):
 	if is_on_wall() and !is_on_floor():
 		var wall_normal = get_wall_normal()
 		handle_wall_slide(wall_normal, delta)
-		
-	if input_dir.x > 0:
-		$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(-5), tilt_mod)
-	elif input_dir.x < 0:
-		$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(5), tilt_mod)
+
+	# Only apply camera tilt when on the ground to prevent flipping when jumping
+	if is_on_floor():
+		if input_dir.x > 0:
+			$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(-5), tilt_mod)
+		elif input_dir.x < 0:
+			$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(5), tilt_mod)
+		else:
+			$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(0), tilt_mod)
 	else:
-		$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(0), tilt_mod)
+		# Gradually return to neutral when in the air
+		$%Camera3D.rotation.z = lerp_angle($%Camera3D.rotation.z, deg_to_rad(0), tilt_mod * 2)
 
 	move_and_slide()
 
@@ -107,17 +111,17 @@ func handle_wall_slide(wall_normal: Vector3, delta: float) -> void:
 func _handle_water_physics(delta) -> bool:
 	if get_tree().get_nodes_in_group("water").all(func(area): return !area.overlaps_body(self)):
 		return false
-	
+
 	if not is_on_floor():
 		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * 0.3 * delta
-	
+
 	self.velocity += cam_aligned_wish_dir * get_move_speed() * delta
-	
+
 	if Input.is_action_pressed("jump"):
 		self.velocity.y += swim_up_speed * delta
-	
+
 	self.velocity = self.velocity.lerp(Vector3.ZERO, 1.5 * delta)
-	
+
 	return true
 
 func _handle_air_physics(delta) -> void:
@@ -157,7 +161,7 @@ func set_hp_max(value):
 func set_hp(value):
 	if value != hp:
 		hp = clamp(value, 0, hp_max)
-		emit_signal("hp_changed", hp) #emit signal 
+		emit_signal("hp_changed", hp) #emit signal
 		if hp == 0:
 			emit_signal("died")
 
