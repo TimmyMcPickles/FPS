@@ -218,9 +218,6 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_if2mf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.859749, 0.508781, 1.31538)
 
-[node name="glock" parent="Player/Head/Camera3D/Weapon_Manager/Weapon" index="0"]
-transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, -1.61229, 0)
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_cvn5h")
 

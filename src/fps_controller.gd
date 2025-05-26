@@ -82,7 +82,9 @@ func _physics_process(delta):
 	if is_on_wall() and !is_on_floor():
 		var wall_normal = get_wall_normal()
 		handle_wall_slide(wall_normal, delta)
-
+	
+#REMOVED CAMERA TILT DUE TO CAMERA BUGS. MAY FIX LATER!!!
+#-------------------------------------------------------
 	# Apply camera tilt based on movement direction
 	#var target_tilt = 0.0
 	#var tilt_multiplier = 1.0
@@ -108,7 +110,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func handle_wall_slide(wall_normal: Vector3, delta: float) -> void:
+func handle_wall_slide(wall_normal: Vector3, _delta: float) -> void:
 	# Project velocity onto the wall's plane to allow sliding
 	var slide_velocity = velocity - (velocity.dot(wall_normal) * wall_normal)
 

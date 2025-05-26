@@ -1,7 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://d7umbutl2yhq"]
+[gd_scene load_steps=28 format=3 uid="uid://d7umbutl2yhq"]
 
 [ext_resource type="Script" uid="uid://caja55j6biwkq" path="res://src/fps_controller.gd" id="1_reen0"]
+[ext_resource type="Script" uid="uid://f1mq2m3gggkw" path="res://src/HUD.gd" id="2_rpewe"]
 [ext_resource type="Shader" uid="uid://cb4oajhgi3ms0" path="res://shaders/psx.gdshader" id="2_w7u6x"]
+[ext_resource type="Texture2D" uid="uid://dtf63gv1pbheu" path="res://textures/crosshairs/White/crosshair005.png" id="3_i5qg6"]
 [ext_resource type="ArrayMesh" uid="uid://bakt4squh8ae4" path="res://models/guy/guyV1_Cube.res" id="3_n4b2a"]
 [ext_resource type="Script" uid="uid://cksvdbpeh2eqs" path="res://src/weapon_manager.gd" id="4_ql11t"]
 [ext_resource type="PackedScene" uid="uid://buxdf0x8bx8j1" path="res://models/weapons/glock_test/Low_poly_glock.glb" id="4_t2qo1"]
@@ -427,6 +429,52 @@ air_cap = 1.2
 air_accel = 1000.0
 air_move_speed = 600.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_rpewe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label 1" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Current Weapon:"
+
+[node name="current_weapon" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label 1" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Ammo:"
+
+[node name="current_ammo" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label 1" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Weapon Stack: "
+
+[node name="weapon_stack" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="crosshair" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_i5qg6")
+stretch_mode = 3
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_reen0")
@@ -476,6 +524,9 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06369, 0)
 shape = SubResource("BoxShape3D_n4b2a")
 
+[connection signal="update_ammo" from="Head/Camera3D/Weapon_Manager" to="CanvasLayer" method="_on_weapon_manager_update_ammo"]
+[connection signal="update_weapon_stack" from="Head/Camera3D/Weapon_Manager" to="CanvasLayer" method="_on_weapon_manager_update_weapon_stack"]
+[connection signal="weapon_changed" from="Head/Camera3D/Weapon_Manager" to="CanvasLayer" method="_on_weapon_manager_weapon_changed"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 
 [editable path="hurtbox"]
